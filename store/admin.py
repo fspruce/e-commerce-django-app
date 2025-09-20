@@ -22,7 +22,9 @@ class ProductAdmin(SummernoteModelAdmin):
         "tags",
     )
     list_editable = ("published",)
-    prepopulated_fields = {"slug": ("name",)}
+    prepopulated_fields = {
+        "slug": ("name",),
+    }
 
 
 class ReviewAdmin(admin.ModelAdmin):
@@ -36,9 +38,15 @@ class ReviewAdmin(admin.ModelAdmin):
     list_editable = ("approved",)
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {
+        "slug": ("name",),
+    }
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Order)
 admin.site.register(OrderItem)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Tag)

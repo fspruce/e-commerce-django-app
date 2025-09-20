@@ -11,6 +11,8 @@ def home_page_view(request):
 
 
 class TagAutocomplete(Select2QuerySetView):
+    create_field = "name"
+
     def get_queryset(self):
         # Only allow authenticated users to use the autocomplete
         if not self.request.user.is_authenticated:
