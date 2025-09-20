@@ -32,3 +32,11 @@ class ReviewAdmin(admin.ModelAdmin):
     )
     list_filter = ("approved",)
     list_editable = ("approved",)
+
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Review, ReviewAdmin)
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(Category)
+admin.site.register(Tag)
