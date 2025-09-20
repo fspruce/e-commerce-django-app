@@ -21,3 +21,14 @@ class ProductAdmin(SummernoteModelAdmin):
     )
     list_editable = ("published",)
     prepopulated_fields = {"slug": ("name",)}
+
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "product",
+        "rating",
+        "approved",
+    )
+    list_filter = ("approved",)
+    list_editable = ("approved",)
