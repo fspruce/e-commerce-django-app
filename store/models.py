@@ -14,6 +14,12 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True)
 
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
 
 class Tag(models.Model):
     """
@@ -21,6 +27,12 @@ class Tag(models.Model):
     """
 
     name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
@@ -41,6 +53,12 @@ class Product(models.Model):
     tags = models.ManyToManyField("Tag", blank=True)
     published = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
 
 class Review(models.Model):
     """
@@ -54,9 +72,15 @@ class Review(models.Model):
     )
     comment = models.TextField()
     rating = models.IntegerField()
-    date_created = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return f"Review by {self.user.username} for {self.product.name}"
 
 
 class Order(models.Model):
@@ -70,6 +94,12 @@ class Order(models.Model):
     complete = models.BooleanField(default=False)
     status = models.CharField(max_length=50, default="Pending")
 
+    class Meta:
+        ordering = ["-date_ordered"]
+
+    def __str__(self):
+        return f"Order {self.id} by {self.user.username}"
+
 
 class OrderItem(models.Model):
     """
@@ -80,3 +110,6 @@ class OrderItem(models.Model):
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     order = models.ForeignKey("Order", on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.product.name} ({self.quantity}) in Order {self.order.id}"
