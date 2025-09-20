@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "cloudinary_storage",
     "cloudinary",
     "django_summernote",
+    "dal",
+    "dal_select2",
     # My Apps
     "accounts",
     "admin_tools",
