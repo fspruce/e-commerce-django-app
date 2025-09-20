@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "cloudinary_storage",
     "cloudinary",
+    "django_summernote",
     # My Apps
     "accounts",
     "admin_tools",

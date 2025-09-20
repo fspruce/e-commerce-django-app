@@ -1,3 +1,23 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
+from .models import Product, Review, Order, OrderItem, Category, Tag
 
 # Register your models here.
+
+
+class ProductAdmin(SummernoteModelAdmin):
+    summernote_fields = ("description",)
+    list_display = (
+        "name",
+        "price",
+        "stock",
+        "category",
+        "published",
+    )
+    list_filter = (
+        "published",
+        "category",
+        "tags",
+    )
+    list_editable = ("published",)
+    prepopulated_fields = {"slug": ("name",)}
