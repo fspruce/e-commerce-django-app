@@ -2,9 +2,6 @@
 {% load static %}
 
 {% block content %}
-<h1>Product Index</h1>
-<p>{{ product_list|length }} products found</p>
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 mt-3 left">
@@ -14,10 +11,10 @@
           <div class="card mb-4">
             <div class="card-body">
               <div class="image-container">
-                {% if "placeholder" in product.image.url %}
-                <img class="card-img-top" src="{% static 'images/product_placeholder.jpg' %}" alt="placeholder image">
-                {% else %}
+                {% if product.image %}
                 <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                <img class="card-img-top" src="{% static 'images/product_placeholder.jpg' %}" alt="placeholder image">
                 {% endif %}
               </div>
               <a href="{% url 'product_detail' product.slug %}" class="post-link">

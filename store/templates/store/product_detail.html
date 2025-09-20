@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
@@ -7,10 +9,10 @@
         <p class="post-subtitle">£{{ product.price }} | Stock: {{ product.stock }}</p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
-        {% if "placeholder" in product.image.url %}
-        <img src="{% static 'images/product_placeholder.jpg' %}" class="scale" alt="placeholder image">
+        {% if product.image %}
+        <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
         {% else %}
-        <img src="{{ product.image.url }}" class="scale" alt="{{ product.name }}">
+        <img class="card-img-top" src="{% static 'images/product_placeholder.jpg' %}" alt="placeholder image">
         {% endif %}
       </div>
     </div>
