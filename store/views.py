@@ -1,13 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from dal_select2.views import Select2QuerySetView
 from .models import Tag
 
 # Create your views here.
 
 
-def home_page_view(request):
-    return HttpResponse("<h1>Hello, World!</h1>")
+def index(request):
+    return render(request, "store/index.html")
 
 
 class TagAutocomplete(Select2QuerySetView):
